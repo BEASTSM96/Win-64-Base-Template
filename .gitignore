@@ -3,7 +3,7 @@
 !vendor/bin/premake/
 bin-int/
 
-# Hazel files
+# log files
 *.log
 
 # Visual Studio files and folder
