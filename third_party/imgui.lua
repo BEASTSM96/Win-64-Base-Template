@@ -7,8 +7,8 @@ third_party_project( "imgui", "StaticLib" )
 		"%{prj.name}/imgui**.h",
 		"%{prj.name}/imgui**.cpp",
 
-		"%{prj.name}/exmaples/imgui_impl_opengl3.cpp",
-		"%{prj.name}/exmaples/imgui_impl_opengl3.h",
+		"%{prj.name}/examples/imgui_impl_opengl3.cpp",
+		"%{prj.name}/examples/imgui_impl_opengl3.h",
 	}
 	
 	defines
@@ -19,5 +19,5 @@ third_party_project( "imgui", "StaticLib" )
 	includedirs
 	{
 		"%{prj.name}/imgui**.h",
-		"%{prj.name}/exmaples/imgui_impl_opengl3.h"
+		"%{prj.name}/examples/imgui_impl_opengl3.h"
 	}

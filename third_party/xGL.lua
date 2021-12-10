@@ -15,23 +15,5 @@ third_party_project( "xGL", "StaticLib" )
 	
 	includedirs
 	{
-		"%{prj.name}/src/xgl.h"
+		"%{prj.name}/src/**.h"
 	}
-
-	filter "system:windows"
-		systemversion "latest"
-
-	filter "system:linux"
-		systemversion "latest"
-		pic "On"
-
-	filter "system:macosx"
-		systemversion "11"
-
-	filter "configurations:Debug"
-		runtime "Debug"
-		symbols "on"
-
-	filter "configurations:Release"
-		runtime "Release"
-		optimize "on"
