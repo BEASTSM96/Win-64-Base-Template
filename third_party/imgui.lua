@@ -4,20 +4,38 @@ require "../lua/third_party_project"
 third_party_project( "imgui", "StaticLib" )
 	files
 	{
-		"%{prj.name}/imgui**.h",
-		"%{prj.name}/imgui**.cpp",
+		"%{prj.name}/imgui*.h",
+		"%{prj.name}/imgui*.cpp",
 
-		"%{prj.name}/examples/imgui_impl_opengl3.cpp",
-		"%{prj.name}/examples/imgui_impl_opengl3.h",
+		"%{prj.name}/backends/imgui_impl_opengl3.cpp",
+		"%{prj.name}/backends/imgui_impl_glfw.cpp",
 	}
 	
 	defines
 	{
-		"_CRT_SECURE_NO_WARNINGS"
+		"_CRT_SECURE_NO_WARNINGS",
+		"GLFW_RESIZE_NESW_CURSOR"
 	}
-	
+
 	includedirs
 	{
-		"%{prj.name}/imgui**.h",
-		"%{prj.name}/examples/imgui_impl_opengl3.h"
+		"%{prj.name}/",
+		"glfw/include"
 	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+	filter "system:linux"
+		systemversion "latest"
+
+	filter "system:macosx"
+		systemversion "11"
+
+	filter "configurations:Debug"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		runtime "Release"
+		optimize "on"

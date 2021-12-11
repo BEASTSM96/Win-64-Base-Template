@@ -9,3 +9,15 @@ _outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 function outputdir( )
 	return _outputdir
 end
+
+function get_kind( _kind )
+	if _kind == "StaticLib" then 
+		return "StaticLib" 
+	elseif _kind == "SharedLib" then 
+		return "SharedLib" 
+	elseif _kind == "ConsoleApp" then 
+		return "ConsoleApp" 
+	else 
+		return "WindowedApp" 
+	end
+end
