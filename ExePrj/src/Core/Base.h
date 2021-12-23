@@ -26,22 +26,21 @@
 *********************************************************************************************
 */
 
-int main( int nbArgs, char** args ) 
-{
+#pragma once
 
-}
+#define BIND_FUNC( fn ) [ this ]( auto&&... args ) -> decltype( auto ) { return this->fn( std::forward<decltype( args )>( args )...); }
 
-/*
-#if defined ( _WIN64 ) || defined( _WIN32 )
+#define SINGLETON( x )                    \
+public:                                   \
+static x& Get() { static x _; return _; } \
+x( const x& ) = delete;                   \
+x( x&& ) = delete;                        \
+x& operator=( x&& ) = delete;             \
+x& operator=( const x& ) = delete
 
-#def
+#define BIT( x ) (1 << x)
 
-#include <Windows.h>
-
-int WINAPI WinMain( _In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd )
-{
-	return main( __argc, __argv );
-}
-
-#endif // SAT_WINDOWS
-*/
+// Short macro for typing "#if defined( _WIN32 ) || defined( _WIN64 )"
+#if defined( _WIN32 ) || defined( _WIN64 )
+#define WINDOWS 1
+#endif

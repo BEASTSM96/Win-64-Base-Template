@@ -26,7 +26,7 @@
 *********************************************************************************************
 */
 
-#include "xgl.h"
+#include "xGL.h"
 
 #undef XGL_LOAD_FUNCTION
 
@@ -71,8 +71,6 @@ void xGL::FindGLVersion()
 		"OpenGL ES ",
 		NULL
 	};
-
-	printf( ( const char* )glGetString( GL_VERSION ) );
 
 	version = ( const char* )glGetString( GL_VERSION );
 	if( !version ) return;

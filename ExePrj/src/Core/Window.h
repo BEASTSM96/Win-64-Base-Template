@@ -26,22 +26,53 @@
 *********************************************************************************************
 */
 
-int main( int nbArgs, char** args ) 
+#pragma once
+
+#include "Base.h"
+
+#include <string>
+#include <cstring>
+
+struct GLFWwindow;
+
+// Main Window class
+class Window
 {
+	SINGLETON( Window );
 
-}
+	Window();
+	~Window();
 
-/*
-#if defined ( _WIN64 ) || defined( _WIN32 )
+public:
 
-#def
+	void Refresh();
 
-#include <Windows.h>
+	void Maximize();
+	void Minimize();
 
-int WINAPI WinMain( _In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd )
-{
-	return main( __argc, __argv );
-}
+	void Restore();
+	void SetTitle( const std::string& title );
 
-#endif // SAT_WINDOWS
-*/
+	void Render();
+
+	void* NativeWindow() const { return m_Window; }
+
+	int Width() { return m_Width; }
+	int Height() { return m_Height; }
+
+private:
+
+	GLFWwindow* m_Window = nullptr;
+
+	int m_Height = 720;
+	int m_Width  = 1200;
+
+	std::string m_Title = "Win64-Base-Template";
+
+	bool m_Minimized = false;
+	bool m_Maximized = false;
+
+	bool m_Rendering = false;
+
+	static void SizeCallback( GLFWwindow* wind, int h, int w );
+};

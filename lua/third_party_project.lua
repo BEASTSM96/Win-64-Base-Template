@@ -16,8 +16,8 @@ function third_party_project( name, _kind )
 	
 		warnings "Off"
 
-		targetdir ("../bin/" .. outputdir() .. "/%{prj.name}")
-		objdir ("../bin-int/" .. outputdir() .. "/%{prj.name}")
+		targetdir ("bin/" .. outputdir() .. "/%{prj.name}")
+		objdir ("bin-int/" .. outputdir() .. "/%{prj.name}")
 			
 	table.insert( third_party_projects, name )
 end

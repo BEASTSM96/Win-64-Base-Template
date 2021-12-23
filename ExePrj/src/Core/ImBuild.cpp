@@ -26,22 +26,5 @@
 *********************************************************************************************
 */
 
-int main( int nbArgs, char** args ) 
-{
-
-}
-
-/*
-#if defined ( _WIN64 ) || defined( _WIN32 )
-
-#def
-
-#include <Windows.h>
-
-int WINAPI WinMain( _In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd )
-{
-	return main( __argc, __argv );
-}
-
-#endif // SAT_WINDOWS
-*/
+#include "backends/imgui_impl_opengl3.cpp"
+#include "backends/imgui_impl_glfw.cpp"

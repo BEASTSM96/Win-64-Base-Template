@@ -46,7 +46,7 @@ _project( "ExePrj", "ConsoleApp" )
 		"%{prj.name}/src/**.h",
 		"libProject/src/**.h",
 		"third_party/glfw/include",
-		"third_party/imgui/",
+		"third_party/ImGui/",
 		"third_party/xGL/src/"
 	}
 	

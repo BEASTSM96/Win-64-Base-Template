@@ -1,7 +1,7 @@
 require "../lua/init"
 require "../lua/third_party_project"
 
-third_party_project( "imgui", "StaticLib" )
+third_party_project( "ImGui", "StaticLib" )
 	files
 	{
 		"%{prj.name}/imgui*.h",

@@ -13,12 +13,12 @@ function _project( name, _kind )
 		kind( get_kind( _kind ) )
 		language( "C++" )
 		cppdialect( "C++20" )
-		if _kind == "StaticLib" then staticruntime( "On" ) else staticruntime( "Off" ) end
+		staticruntime( "On" )
 	
 		targetdir ("bin/" .. outputdir() .. "/%{prj.name}")
 		objdir ("bin-int/" .. outputdir() .. "/%{prj.name}")
 
 		links( third_party_projects )
 		
-		table.insert( projects, name )
+	table.insert( projects, name )
 end
