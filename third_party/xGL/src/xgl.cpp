@@ -144,7 +144,7 @@ bool xGL::LoadGL()
 	XGL_FUNCS_4_5
 	XGL_FUNCS_4_6
 
-	return GLVersion.major != 0 || GLVersion.minor != 0;
+	return GLVersion.major != 0;
 }
 
 #if defined ( _WIN32 )

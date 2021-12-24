@@ -34,11 +34,11 @@
 
 #include "xgl.h"
 
-//#include "backends/imgui_impl_opengl3.h"
-//#include "backends/imgui_impl_glfw.h"
+#include "backends/imgui_impl_opengl3.h"
+#include "backends/imgui_impl_glfw.h"
 
 #if defined( WINDOWS )
-//#include <Windows.h>
+#include <Windows.h>
 #endif
 
 #include <iostream>
@@ -62,24 +62,25 @@ Window::Window()
 
 	glfwMakeContextCurrent( m_Window );
 
-	//int result = xGL::LoadGL();
-	//if( result == 0 )
-	//{
-	//	std::cerr << "Failed to load OpenGL with xGL!";
-	//}
-	//std::cout << "OpenGL Renderer: {2}, {0}, {1}", glGetString( GL_VENDOR ), glGetString( GL_RENDERER ), glGetString( GL_VERSION );
+	if( xGL::LoadGL() == false )
+	{
+		std::cerr << "Failed to load OpenGL with xGL!"; __debugbreak();
+	}
+
+	printf( "OpenGL Renderer: %s, %s, %s\n", glGetString( GL_RENDERER ), glGetString( GL_VENDOR ), glGetString( GL_VERSION ) );
 
 	glfwSetWindowUserPointer( m_Window, this );
 	glfwSwapInterval( GLFW_TRUE );
 
-	/*
+	glfwSetWindowCloseCallback( m_Window, []( GLFWwindow* wind ) { Window* self = ( Window* )glfwGetWindowUserPointer( wind ); self->m_PendingClose ^= 1; } );
+
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
 
 	// ImGui Theme
 
-	ImGuiIO& io = ImGui::GetIO(); ( void )io;
+	ImGuiIO& io = ImGui::GetIO();
 
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
@@ -95,15 +96,12 @@ Window::Window()
 
 	ImGui_ImplGlfw_InitForOpenGL( m_Window, true );
 	ImGui_ImplOpenGL3_Init( "#version 410" );
-	*/
 }
 
 Window::~Window()
 {
-	/*
 	ImGui_ImplGlfw_Shutdown();
 	ImGui_ImplOpenGL3_Shutdown();
-	*/
 
 	glfwDestroyWindow( m_Window );
 	glfwTerminate();
@@ -121,7 +119,6 @@ void Window::Render()
 
 	m_Rendering = true;
 
-	/*
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 
@@ -141,7 +138,7 @@ void Window::Render()
 		ImGui::RenderPlatformWindowsDefault();
 		glfwMakeContextCurrent( backup_current_context );
 	}
-	*/
+
 	glfwSwapBuffers( m_Window );
 
 	m_Rendering = false;
@@ -149,17 +146,17 @@ void Window::Render()
 
 void Window::Maximize()
 {
-
+	glfwMaximizeWindow( m_Window );
 }
 
 void Window::Minimize()
 {
-
+	glfwIconifyWindow( m_Window );
 }
 
 void Window::Restore()
 {
-
+	glfwRestoreWindow( m_Window );
 }
 
 void Window::SetTitle( const std::string& title )
@@ -170,6 +167,8 @@ void Window::SetTitle( const std::string& title )
 
 void Window::SizeCallback( GLFWwindow* wind, int h, int w )
 {
+	Window* self = ( Window* )glfwGetWindowUserPointer( wind );
 
+	self->m_Height = h;
+	self->m_Width  = w;
 }
-

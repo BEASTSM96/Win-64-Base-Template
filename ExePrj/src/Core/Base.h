@@ -44,3 +44,16 @@ x& operator=( const x& ) = delete
 #if defined( _WIN32 ) || defined( _WIN64 )
 #define WINDOWS 1
 #endif
+
+namespace Debug {
+
+	static void BreakDebug()
+	{
+	#if defined ( WINDOWS )
+		__debugbreak();
+	#else // linux etc.
+		//#TODO
+	#endif
+	}
+
+}

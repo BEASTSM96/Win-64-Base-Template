@@ -26,15 +26,14 @@
 *********************************************************************************************
 */
 
+#include "Core/App.h"
+
 int main( int nbArgs, char** args ) 
 {
-
+	App::Get().Run();
 }
 
-/*
 #if defined ( _WIN64 ) || defined( _WIN32 )
-
-#def
 
 #include <Windows.h>
 
@@ -44,4 +43,3 @@ int WINAPI WinMain( _In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 }
 
 #endif // SAT_WINDOWS
-*/
