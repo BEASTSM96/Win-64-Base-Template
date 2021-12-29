@@ -4,3 +4,6 @@
 [submodule "third_party/glfw"]
 	path = third_party/glfw
 	url = https://github.com/glfw/glfw
+[submodule "lua"]
+	path = lua
+	url = https://github.com/BEASTSM96/premake-lua-base
